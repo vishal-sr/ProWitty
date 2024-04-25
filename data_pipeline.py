@@ -1,4 +1,6 @@
 from llama_index.core import SimpleDirectoryReader
+from llama_index.readers.file import CSVReader
+
 from llama_index.core.node_parser import SentenceSplitter
 import chromadb
 from llama_index.vector_stores.chroma import ChromaVectorStore
@@ -8,7 +10,7 @@ from llama_index.core.llms import ChatMessage, MessageRole
 from llama_index.core.storage.chat_store import SimpleChatStore
 
 from utils import write_transcript_file
-from aws_service import embed
+from aws_service import aws_embed
 
 class RawData:
     def __init__(
@@ -23,13 +25,14 @@ class RawData:
         
         # Writing a text file which stores the transcript of the video file.
         # This process should carried before running the reader.
-        write_transcript_file(
-            write_transcript_file = self.rawFileStorageDirectory + "/videos/" + self.videoFileName
-        )
+        # write_transcript_file(
+        #     write_transcript_file = self.rawFileStorageDirectory + "/videos/" + self.videoFileName
+        # )
 
         # Reading the files inside the directory,
         # And preparing the document out of it.
-        reader = SimpleDirectoryReader(input_dir = self.rawFilesStorageDirectory, recursive = True)
+        reader = SimpleDirectoryReader(input_dir = self.rawFileStorageDirectory, recursive = True)
+
         documents = []
         for docs in reader.iter_data():
             documents.extend(docs)
@@ -50,8 +53,8 @@ class DataPipeline:
         self.nodes = RawData(
             rawFileStorageDirectory = rawFileStorageDirectory,
             videoFileName = videoFileName
-        )
-        self.embedModel = embed()
+        ).get_nodes()
+        self.embedModel = aws_embed()
     
     def build_and_save(self):
         db = chromadb.PersistentClient(path = "storage/vectorDB")
@@ -74,6 +77,7 @@ class DataPipeline:
                     content="Okay, sounds good."))
         chatStore.persist(persist_path = "storage/chat_store.json") 
 
+        return self.nodes
 
 if __name__ == "__main__":
     pass

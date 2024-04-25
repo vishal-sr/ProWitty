@@ -1,0 +1,51 @@
+SNo,Incident ID,Incident Title,Impact,Priority,Category,Created by,Created Date(DD/MM/YYYY),Assigned to,Resolved date,Status
+1,INC100011,Facing connection issues in Amazon Services(Transcribe),Medium,3-Medium,Infrastructure,Gayathiri.Ravi@ibm.com,11/4/2024,jayanba1@in.ibm.com,11/4/2024,Closed
+2,INC100012,Transcript code issue while accessing the input file ,High,4-Critical,Software,Vishal.S.R@ibm.com,11/4/2024,Pushkarani.pushkarani@ibm.com,11/4/2024,Closed
+3,INC100013,S3 bucket space issues while loading the input data ,High,2-High,Hardware,Pushkarani.pushkarani@ibm.com,11/4/2024,Gayathiri.Ravi@ibm.com,,Open
+4,INC100014,Very slow conversion issues in Amazon Transcript services,Low,1-Low,Performance,jayanba1@in.ibm.com,11/4/2024,Vishal.S.R@ibm.com,11/4/2024,Closed
+5,INC100015,Facing connection issues in Amazon Services(Titan Embedding),High,2-High,Infrastructure,Gayathiri.Ravi@ibm.com,11/4/2024,jayanba1@in.ibm.com,12/4/2024,Closed
+6,INC100016,Error while storing the index data in Vector DB,High,2-High,Software,Vishal.S.R@ibm.com,11/4/2024,Pushkarani.pushkarani@ibm.com,11/4/2024,Closed
+7,INC100017,Automatic system booting issues while data processing,High,4-Critical,Hardware,Pushkarani.pushkarani@ibm.com,11/4/2024,Gayathiri.Ravi@ibm.com,11/4/2024,Closed
+8,INC100018,Retrieval slowness from the Vector DB store ,Medium,3-Medium,Performance,jayanba1@in.ibm.com,12/4/2024,Vishal.S.R@ibm.com,,Open
+9,INC100019,Facing configuration issues while accessing the Amazon Services(Titan Express),Low,1-Low,Infrastructure,Gayathiri.Ravi@ibm.com,12/4/2024,jayanba1@in.ibm.com,12/4/2024,Closed
+10,INC100020,Error while querying the Vector DB for similarity search ,Medium,3-Medium,Software,Vishal.S.R@ibm.com,12/4/2024,Pushkarani.pushkarani@ibm.com,12/4/2024,Closed
+11,INC100021,System slowness while acessing the Vector DB ,Medium,3-Medium,Hardware,Pushkarani.pushkarani@ibm.com,12/4/2024,Gayathiri.Ravi@ibm.com,12/4/2024,Closed
+12,INC100022,Very slow response from Amazon Titan Express ,High,2-High,Performance,jayanba1@in.ibm.com,13/4/2024,Vishal.S.R@ibm.com,13/4/2024,Closed
+13,INC100023,Facing timeout issues while accessing the Amazon Services(Titan Express),High,4-Critical,Infrastructure,Gayathiri.Ravi@ibm.com,13/4/2024,jayanba1@in.ibm.com,13/4/2024,Closed
+14,INC100024,Error while getting few responses from the Amazon Titan Express ,Low,1-Low,Software,Vishal.S.R@ibm.com,13/4/2024,Pushkarani.pushkarani@ibm.com,13/4/2024,Closed
+15,INC100025,System booting issues while continuously calling the Amazon services ,Low,1-Low,Hardware,Pushkarani.pushkarani@ibm.com,13/4/2024,Gayathiri.Ravi@ibm.com,13/4/2024,Closed
+16,INC100026,More time taken in retrieving the response for the subsequent queries from Amazon Titan Express ,Medium,3-Medium,Performance,jayanba1@in.ibm.com,13/4/2024,Vishal.S.R@ibm.com,13/4/2024,Closed
+17,INC100027,Data corruption issue in Amazon Services(Transcribe),High,4-Critical,Infrastructure,Gayathiri.Ravi@ibm.com,13/4/2024,jayanba1@in.ibm.com,13/4/2024,Closed
+18,INC100028,Script error encountered while processing data,Medium,3-Medium,Software,Vishal.S.R@ibm.com,13/4/2024,Pushkarani.pushkarani@ibm.com,13/4/2024,Closed
+19,INC100029,Storage capacity exceeded in S3 bucket,High,2-High,Hardware,Pushkarani.pushkarani@ibm.com,13/4/2024,Gayathiri.Ravi@ibm.com,13/4/2024,Closed
+20,INC100030,Slow response time in Amazon Transcript services,Low,1-Low,Performance,jayanba1@in.ibm.com,14/4/2024,Vishal.S.R@ibm.com,,Open
+21,INC100031,Connection timeout issues in Amazon Services(Titan Embedding),High,2-High,Infrastructure,Gayathiri.Ravi@ibm.com,14/4/2024,jayanba1@in.ibm.com,14/4/2024,Closed
+22,INC100032,Indexing error in Vector DB,High,2-High,Software,Vishal.S.R@ibm.com,14/4/2024,Pushkarani.pushkarani@ibm.com,14/4/2024,Closed
+23,INC100033,Continuous system reboots affecting data processing,High,4-Critical,Hardware,Pushkarani.pushkarani@ibm.com,14/4/2024,Gayathiri.Ravi@ibm.com,14/4/2024,Closed
+24,INC100034,Slow data retrieval from Vector DB store,Medium,3-Medium,Performance,jayanba1@in.ibm.com,14/4/2024,Vishal.S.R@ibm.com,14/4/2024,Closed
+25,INC100035,Configuration mismatch in Amazon Services(Titan Express),Low,1-Low,Infrastructure,Gayathiri.Ravi@ibm.com,14/4/2024,jayanba1@in.ibm.com,14/4/2024,Closed
+26,INC100036,Query execution error in Vector DB for similarity search,Medium,3-Medium,Software,Vishal.S.R@ibm.com,14/4/2024,Pushkarani.pushkarani@ibm.com,14/4/2024,Closed
+27,INC100037,System lag while accessing Vector DB,Medium,3-Medium,Hardware,Pushkarani.pushkarani@ibm.com,14/4/2024,Gayathiri.Ravi@ibm.com,14/4/2024,Closed
+28,INC100038,Unresponsive Amazon Titan Express service,High,2-High,Performance,jayanba1@in.ibm.com,14/4/2024,Vishal.S.R@ibm.com,14/4/2024,Closed
+29,INC100039,Timeout errors in Amazon Services(Titan Express),High,4-Critical,Infrastructure,Gayathiri.Ravi@ibm.com,14/4/2024,jayanba1@in.ibm.com,14/4/2024,Closed
+30,INC100040,Incomplete responses received from Amazon Titan Express,Low,1-Low,Software,Vishal.S.R@ibm.com,14/4/2024,Pushkarani.pushkarani@ibm.com,14/4/2024,Closed
+31,INC100041,Intermittent system booting issues during Amazon services calls,Low,1-Low,Hardware,Pushkarani.pushkarani@ibm.com,15/4/2024,Gayathiri.Ravi@ibm.com,,Open
+32,INC100042,Delayed response time for subsequent queries in Amazon Titan Express,Medium,3-Medium,Performance,jayanba1@in.ibm.com,15/4/2024,Vishal.S.R@ibm.com,15/4/2024,Closed
+33,INC100043,Network connectivity problem in Amazon Services(Transcribe),High,2-High,Infrastructure,Gayathiri.Ravi@ibm.com,15/4/2024,jayanba1@in.ibm.com,15/4/2024,Closed
+34,INC100044,Code syntax error causing issues in data processing,Medium,3-Medium,Software,Vishal.S.R@ibm.com,15/4/2024,Pushkarani.pushkarani@ibm.com,15/4/2024,Closed
+35,INC100045,Disk space shortage in S3 bucket,High,2-High,Hardware,Pushkarani.pushkarani@ibm.com,15/4/2024,Gayathiri.Ravi@ibm.com,15/4/2024,Closed
+36,INC100046,Performance degradation in Amazon Transcript services,Low,1-Low,Performance,jayanba1@in.ibm.com,15/4/2024,Vishal.S.R@ibm.com,15/4/2024,Closed
+37,INC100047,Service disruption in Amazon Services(Titan Embedding),High,2-High,Infrastructure,Gayathiri.Ravi@ibm.com,15/4/2024,jayanba1@in.ibm.com,15/4/2024,Closed
+38,INC100048,Database indexing issue in Vector DB,High,2-High,Software,Vishal.S.R@ibm.com,15/4/2024,Pushkarani.pushkarani@ibm.com,15/4/2024,Closed
+39,INC100049,Hardware failure leading to system crashes,High,4-Critical,Hardware,Pushkarani.pushkarani@ibm.com,15/4/2024,Gayathiri.Ravi@ibm.com,15/4/2024,Closed
+40,INC100050,Sluggish data retrieval from Vector DB store,Medium,3-Medium,Performance,jayanba1@in.ibm.com,15/4/2024,Vishal.S.R@ibm.com,15/4/2024,Closed
+41,INC100051,Misconfigured settings in Amazon Services(Titan Express),Low,1-Low,Infrastructure,Gayathiri.Ravi@ibm.com,16/4/2024,jayanba1@in.ibm.com,,Open
+42,INC100052,Search query processing error in Vector DB,Medium,3-Medium,Software,Vishal.S.R@ibm.com,16/4/2024,Pushkarani.pushkarani@ibm.com,16/4/2024,Closed
+43,INC100053,System overheating causing Vector DB access delays,Medium,3-Medium,Hardware,Pushkarani.pushkarani@ibm.com,16/4/2024,Gayathiri.Ravi@ibm.com,16/4/2024,Closed
+44,INC100054,Unstable performance of Amazon Titan Express service,High,2-High,Performance,jayanba1@in.ibm.com,16/4/2024,Vishal.S.R@ibm.com,16/4/2024,Closed
+45,INC100055,Data inconsistency issue in Amazon Services(Titan Express),High,4-Critical,Infrastructure,Gayathiri.Ravi@ibm.com,16/4/2024,jayanba1@in.ibm.com,16/4/2024,Closed
+46,INC100056,Processing error encountered in data parsing,Medium,3-Medium,Software,Vishal.S.R@ibm.com,16/4/2024,Pushkarani.pushkarani@ibm.com,16/4/2024,Closed
+47,INC100057,Disk failure affecting S3 bucket operations,High,2-High,Hardware,Pushkarani.pushkarani@ibm.com,16/4/2024,Gayathiri.Ravi@ibm.com,16/4/2024,Closed
+48,INC100058,Reduced throughput in Amazon Transcript services,Low,1-Low,Performance,jayanba1@in.ibm.com,16/4/2024,Vishal.S.R@ibm.com,,Open
+49,INC100059,Connectivity issues with Amazon Services(Titan Embedding),High,2-High,Infrastructure,Gayathiri.Ravi@ibm.com,16/4/2024,jayanba1@in.ibm.com,16/4/2024,Closed
+50,INC100060,Data integrity error in Vector DB,High,2-High,Software,Vishal.S.R@ibm.com,16/4/2024,Pushkarani.pushkarani@ibm.com,16/4/2024,Closed

@@ -1,0 +1,1 @@
+"{\"store\": {\"user01\": [{\"role\": \"user\", \"content\": \"Hello assistant, we are having a insightful discussion about our project\", \"additional_kwargs\": {}}, {\"role\": \"assistant\", \"content\": \"Okay, sounds good.\", \"additional_kwargs\": {}}]}, \"class_name\": \"SimpleChatStore\"}"
