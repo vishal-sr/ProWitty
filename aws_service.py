@@ -4,26 +4,6 @@ import boto3
 
 load_dotenv()
 
-def initialize_s3(bucketName: str = ""):
-
-    # Configure AWS credentials and region
-    aws_access_key_id = os.getenv("AWS_ACCESS_KEY_ID")
-    aws_secret_access_key = os.getenv("AWS_SECRET_ACCESS_KEY")
-    aws_region = 'us-east-1'
-
-    # Create an S3 client
-    s3_client = boto3.client(
-        's3', 
-        aws_access_key_id=aws_access_key_id,
-        aws_secret_access_key=aws_secret_access_key,
-        region_name=aws_region
-    )
-
-    # Use the S3 client to list objects in a bucket
-    baseLoc = f"s3://{bucketName}/"
-
-    return baseLoc
-
 from llama_index.llms.bedrock import Bedrock
 def aws_llm():
     llm = Bedrock(
@@ -44,36 +24,52 @@ def aws_embed():
 
     return embed
 
+import boto3
+import os
 
-def transcribe_video(video_file_path):
+def transcribe_local_video(video_path):
     # Initialize the Amazon Transcribe client
-    transcribe_client = boto3.client('transcribe')
-    
-    # Specify the parameters for the transcription job
-    job_name = 'transcription-job'
-    job_uri = f's3://your-bucket-name/{video_file_path}'
-    output_bucket = 'your-output-bucket'
-    
+    transcribe = boto3.client('transcribe')
+
+    # Upload the video file to an S3 bucket
+    bucket_name = 'your_bucket_name'
+    s3 = boto3.client(
+        's3', 
+        aws_access_key_id = os.getenv("AWS_ACCESS_KEY_ID"),
+        aws_secret_access_key = os.getenv("AWS_SECRET_ACCESS_KEY"),
+        region_name = "us-east-1"
+    )
+    s3.upload_file(video_path, bucket_name, os.path.basename(video_path))
+
+    # Specify the location of the video file in S3
+    media_uri = f's3://{bucket_name}/{os.path.basename(video_path)}'
+
     # Start the transcription job
-    response = transcribe_client.start_transcription_job(
-        TranscriptionJobName=job_name,
-        Media={'MediaFileUri': job_uri},
-        MediaFormat='mp4',
-        OutputBucketName=output_bucket,
-        LanguageCode='en-US'  # Change this to the appropriate language code if needed
+    response = transcribe.start_transcription_job(
+        TranscriptionJobName='TranscriptionJobName',
+        LanguageCode='en-US',  # Specify the language code of the input media
+        MediaFormat='mp4',  # Specify the format of the input media
+        Media={
+            'MediaFileUri': media_uri
+        },
+        OutputBucketName=bucket_name,  # Specify the bucket where the transcript will be stored
     )
-    
+
     # Wait for the transcription job to complete
-    transcribe_client.get_waiter('transcription_job_completed').wait(
-        TranscriptionJobName=job_name
-    )
-    
-    # Get the transcript
-    transcript_url = response['TranscriptionJob']['Transcript']['TranscriptFileUri']
-    transcript_response = transcribe_client.get_object(Bucket=output_bucket, Key=transcript_url.replace('s3://', ''))
-    transcript = transcript_response['Body'].read().decode('utf-8')
-    
-    return transcript
+    while True:
+        status = transcribe.get_transcription_job(TranscriptionJobName=response['TranscriptionJob']['TranscriptionJobName'])
+        if status['TranscriptionJob']['TranscriptionJobStatus'] in ['COMPLETED', 'FAILED']:
+            break
+
+    # Retrieve and return the transcript
+    if status['TranscriptionJob']['TranscriptionJobStatus'] == 'COMPLETED':
+        transcript_uri = status['TranscriptionJob']['Transcript']['TranscriptFileUri']
+        transcript_file = urllib.request.urlopen(transcript_uri)
+        transcript_json = json.load(transcript_file)
+        return transcript_json['results']['transcripts'][0]['transcript']
+    else:
+        return None
+
 
 
 if __name__ == "__main__":
