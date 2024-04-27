@@ -17,6 +17,8 @@ from llama_index.core.retrievers import QueryFusionRetriever
 from llama_index.core.query_engine import RetrieverQueryEngine
 from llama_index.retrievers.bm25 import BM25Retriever
 
+from data_pipeline import RawData
+
 import phoenix as px
 import llama_index.core
 llama_index.core.set_global_handler("arize_phoenix")
@@ -27,7 +29,6 @@ class ProWitty:
             self, 
             llm, 
             embedModel,
-            nodes, 
             dbLoc = "",
             collectionName = "",
             chatLoc = ""
@@ -38,7 +39,10 @@ class ProWitty:
         Settings.llm = self.llm
         Settings.embed_model = self.embedModel
 
-        self.nodes = nodes
+        self.nodes = RawData(
+            rawFileStorageDirectory = r"C:\Users\vishal\Documents\AI\ProWitty\storage\files",
+            videoFileName = ""
+        ).get_nodes()
 
         self.dbLoc = dbLoc
         self.collectionName = collectionName

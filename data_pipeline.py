@@ -11,6 +11,7 @@ from llama_index.core.storage.chat_store import SimpleChatStore
 
 from utils import write_transcript_file
 from aws_service import aws_embed
+from utils import write_transcript_file
 
 class RawData:
     def __init__(
@@ -20,7 +21,10 @@ class RawData:
         ):
         self.rawFileStorageDirectory = rawFileStorageDirectory
         self.videoFileName = videoFileName
-    
+
+    def video_process(self, videoLoc):
+        write_transcript_file(fileDirectory = videoLoc)
+            
     def get_nodes(self):
         
         # Writing a text file which stores the transcript of the video file.
@@ -77,7 +81,7 @@ class DataPipeline:
                     content="Okay, sounds good."))
         chatStore.persist(persist_path = "storage/chat_store.json") 
 
-        return self.nodes
+        # return self.nodes
 
 if __name__ == "__main__":
     pass
