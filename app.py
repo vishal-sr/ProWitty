@@ -34,8 +34,8 @@ if __name__ == "__main__":
         embedModel = aws_embed(),
         dbLoc = "storage/vectorDB",
         collectionName = "defaultDB",
-        chatLoc = "storage/chat_store.json",
-        nodes = nodes
+        chatLoc = "storage/chat_store.json"
     )
 
     print(chat.query("can I get more details on Query execution error in Vector DB ticket?", debug = True))
+
