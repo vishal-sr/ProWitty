@@ -55,11 +55,13 @@ class DataPipeline:
     def __init__(
             self, 
             rawFileStorageDirectory: str = "storage/files", 
-            videoFileName: str = ""
+            videoFileName: str = "",
+            withTranscription: bool = False
         ):
         self.nodes = RawData(
             rawFileStorageDirectory = rawFileStorageDirectory,
-            videoFileName = videoFileName
+            videoFileName = videoFileName,
+            withTranscription = withTranscription
         ).get_nodes()
         self.embedModel = aws_embed()
     
