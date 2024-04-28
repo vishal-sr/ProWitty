@@ -1,6 +1,8 @@
 import os
 from dotenv import load_dotenv
 import boto3
+import urllib
+import json
 
 load_dotenv()
 
@@ -27,12 +29,17 @@ def aws_embed():
 import boto3
 import os
 
-def transcribe_local_video(video_path):
+def get_transcript(video_path):
     # Initialize the Amazon Transcribe client
-    transcribe = boto3.client('transcribe')
+    transcribe = boto3.client(
+        'transcribe',
+        aws_access_key_id = os.getenv("AWS_ACCESS_KEY_ID"),
+        aws_secret_access_key = os.getenv("AWS_SECRET_ACCESS_KEY"),
+        region_name = "us-east-1"
+    )
 
     # Upload the video file to an S3 bucket
-    bucket_name = 'your_bucket_name'
+    bucket_name = 'prowitty-bucket-01'
     s3 = boto3.client(
         's3', 
         aws_access_key_id = os.getenv("AWS_ACCESS_KEY_ID"),
@@ -46,13 +53,13 @@ def transcribe_local_video(video_path):
 
     # Start the transcription job
     response = transcribe.start_transcription_job(
-        TranscriptionJobName='TranscriptionJobName',
+        TranscriptionJobName='TranscriptionJobName01',
         LanguageCode='en-US',  # Specify the language code of the input media
         MediaFormat='mp4',  # Specify the format of the input media
         Media={
             'MediaFileUri': media_uri
         },
-        OutputBucketName=bucket_name,  # Specify the bucket where the transcript will be stored
+        # OutputBucketName=bucket_name,  # Specify the bucket where the transcript will be stored
     )
 
     # Wait for the transcription job to complete
@@ -64,6 +71,7 @@ def transcribe_local_video(video_path):
     # Retrieve and return the transcript
     if status['TranscriptionJob']['TranscriptionJobStatus'] == 'COMPLETED':
         transcript_uri = status['TranscriptionJob']['Transcript']['TranscriptFileUri']
+        print(transcript_uri)
         transcript_file = urllib.request.urlopen(transcript_uri)
         transcript_json = json.load(transcript_file)
         return transcript_json['results']['transcripts'][0]['transcript']
@@ -73,11 +81,13 @@ def transcribe_local_video(video_path):
 
 
 if __name__ == "__main__":
-    llm = aws_embed()
-    print(llm.get_text_embedding("Bill gates is a"))
+    # llm = aws_embed()
+    # print(llm.get_text_embedding("Bill gates is a"))
 
 
-    # Example usage
-    video_file_path = 'path/to/your/video.mp4'
-    transcript = transcribe_video(video_file_path)
-    print(transcript)
+    # # Example usage
+    # video_file_path = 'path/to/your/video.mp4'
+    # transcript = transcribe_video(video_file_path)
+    # print(transcript)
+
+    get_transcript(r"C:\Users\vishal\Documents\AI\ProWitty\storage\files\videos\awsAI15316677.autosave.mp4")
