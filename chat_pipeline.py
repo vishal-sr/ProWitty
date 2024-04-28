@@ -18,6 +18,7 @@ from llama_index.core.query_engine import RetrieverQueryEngine
 from llama_index.retrievers.bm25 import BM25Retriever
 
 from data_pipeline import RawData
+from aws_service import aws_llm, aws_embed
 
 import phoenix as px
 import llama_index.core
@@ -105,4 +106,11 @@ class ProWitty:
         return response
 
 if __name__ == "__main__":
-    pass
+    bot = ProWitty(
+        llm = aws_llm(),
+        embedModel = aws_embed(),
+        dbLoc = "storage/vectorDB",
+        collectionName = "defaultDB",
+        chatLoc = "storage/chat_store.json"
+    )
+    response = bot.query("What is the purpose of ProWitty?", debug = True)
