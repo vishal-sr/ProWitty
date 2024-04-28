@@ -17,13 +17,16 @@ class RawData:
     def __init__(
             self, 
             rawFileStorageDirectory: str = "storage/files", 
-            videoFileName: str = ""
+            videoFileName: str = "ProWitty_presentation.mp4",
+            withTranscription: bool = False
         ):
         self.rawFileStorageDirectory = rawFileStorageDirectory
         self.videoFileName = videoFileName
 
-    def video_process(self, videoLoc):
-        write_transcript_file(fileDirectory = videoLoc)
+        if withTranscription:
+            write_transcript_file(
+                fileDirectory = rawFileStorageDirectory + "/videos/" + videoFileName 
+            )
             
     def get_nodes(self):
         
@@ -35,7 +38,7 @@ class RawData:
 
         # Reading the files inside the directory,
         # And preparing the document out of it.
-        reader = SimpleDirectoryReader(input_dir = self.rawFileStorageDirectory, recursive = True)
+        reader = SimpleDirectoryReader(input_dir = self.rawFileStorageDirectory, recursive = False)
 
         documents = []
         for docs in reader.iter_data():
@@ -84,4 +87,10 @@ class DataPipeline:
         # return self.nodes
 
 if __name__ == "__main__":
-    pass
+    dp = DataPipeline(
+        rawFileStorageDirectory = "storage/files",
+        videoFileName = "ProWitty_presentation.mp4",
+        withTranscription = True
+    )
+
+    dp.build_and_save()
