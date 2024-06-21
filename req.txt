@@ -1,0 +1,2 @@
+llama-index-embeddings-bedrock
+docx2txt

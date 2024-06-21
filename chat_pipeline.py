@@ -20,10 +20,10 @@ from llama_index.retrievers.bm25 import BM25Retriever
 from data_pipeline import RawData
 from aws_service import aws_llm, aws_embed
 
-import phoenix as px
-import llama_index.core
-llama_index.core.set_global_handler("arize_phoenix")
-session = px.launch_app()
+# import phoenix as px
+# import llama_index.core
+# llama_index.core.set_global_handler("arize_phoenix")
+# session = px.launch_app()
 
 class ProWitty:
     def __init__(
@@ -41,8 +41,7 @@ class ProWitty:
         Settings.embed_model = self.embedModel
 
         self.nodes = RawData(
-            rawFileStorageDirectory = r"C:\Users\vishal\Documents\AI\ProWitty\storage\files",
-            videoFileName = ""
+            rawFileStorageDirectory = "storage/files"
         ).get_nodes()
 
         self.dbLoc = dbLoc
@@ -70,12 +69,12 @@ class ProWitty:
             condense_question_prompt = customPrompt,
             chat_history = customChatHistory,
             verbose = True,
-            llm = llm
+            llm = llm,
         )
 
         return chatEngine
 
-    def query(self, query_str: str, debug: bool = False):
+    def query(self, queryStr: str, debug: bool = False):
 
         index, chatStore = self.load()
         
@@ -92,15 +91,19 @@ class ProWitty:
         chat_engine = ProWitty.chat_engine(
             queryEngine = queryEngine,
             llm = self.llm,
-            chatStore = chatStore
+            chatStore = chatStore,
         )
         
-        response = chat_engine.chat(query_str).response
+        response = chat_engine.chat(queryStr).response
 
-        if debug:
-            import time
-            while True:
-                time.sleep(100)
+        chatStore.add_message("user01", ChatMessage(role=MessageRole.USER, content = queryStr))
+        chatStore.add_message("user01", ChatMessage(role=MessageRole.ASSISTANT, content = response))
+        chatStore.persist(persist_path = "storage/chat_store.json")
+
+        # if debug:
+        #     import time
+        #     while True:
+        #         time.sleep(100)
 
 
         return response
